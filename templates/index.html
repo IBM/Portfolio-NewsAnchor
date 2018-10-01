@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+    Portfolio Analytics Computation
+  </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{{ url_for('static', filename='images/WatsonLogo.png') }}" rel="icon" type="image/png">
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+  </script>
+  <script src="https://d3js.org/d3.v4.js">
+  </script>
+  </link>
+  <link href="{{ url_for('static', filename='css/new.css') }}" rel="stylesheet"> </link>
+  </link>
+</head>
+
+<body class="sandboxtwo">
+  <div class="container">
+
+    <div class="header-bar">
+      <div class="header-bar__home">
+        <div class="header-bar__home__button">
+          <strong>
+                            Portfolio News Anchor&nbsp;
+                        </strong>
+        </div>
+        <div class="header-bar__new">
+          <button class="new-analysis Button secondary" aria-label="New Scenario">
+                            New Listener
+                        </button>
+        </div>
+      </div>
+    </div>
+    <div class="article-input">
+      <div class="article-input__hero">
+        Let Watson watch financial news so you don't have to 
+      </div>
+      <div class="article-input__triple">
+        <div class="article-input__portfolio">
+          
+          <div class="enter-portfolio">
+            <div class="article-input__header">
+              Select Portfolio
+            </div>
+            <select class="" aria-label="select portfolio" id="portfolio_name">
+                            <option disabled="" selected="" value="disabled">
+                                Loading...
+                            </option>
+                        </select>
+          </div>
+          <div>
+            &nbsp;&nbsp;
+          </div>
+
+            <div class="article-input__header">
+              Upload a new portfolio
+            </div>
+              <input type="file" id="portfolio_file" class="" aria-label="upload portfolio">
+             <br><br>
+            <div class="article-input__header">
+              Upload News-stream
+            </div>
+            <form id="video_form" method="post" action="" enctype="multipart/form-data">
+              <input type="file" name="file" id="news_stream_file" class="" aria-label="upload news stream">
+            </form>
+            <div id="success_video_container">
+            </div>
+
+             <!--
+              <button id="show_feeds" class="upload Button" aria-label="Run Analysis">
+                Select News Channels
+              </button>
+              <div id="feeds" align="left">
+                <br>
+                <h4>What news channels would you like Watson to monitor for you?</h4>
+                <table id="feeds_tbl">
+                <tr>
+                    <th>
+                      TV Channels
+                    </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                  <tr>
+                    <td><br><input type='checkbox' name='feeds' value='http://www.livenewson.com/american/cnbc-america.html' checked='checked'>CNBC<br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><br><input type='checkbox' name='analytics' value='http://video.foxbusiness.com/v/5614626175001/' >Fox Business News<br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><br><input type='checkbox' name='analytics' value='https://www.bloomberg.com/live/us'>Bloomberg News<br></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                                                                                                
+                </table>
+              </div>
+             -->
+            <div class="article-input__run">
+              <button class="run-analysis Button" aria-label="Run Analysis">Start Watching</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-loading tab">
+      <div class="loader">
+        <img src="{{ url_for('static', filename='images/spin.svg') }}" alt="loading">
+        </img>
+        <h2>
+        Your analysis will be completed shortly.
+        </h2>
+      </div>
+    </div>
+
+    <div class="wii-info tab">
+      <div class="wii-info__tiles">
+        <h3>
+            Services that made this possible
+        </h3>
+        <div class="wii-tile">
+
+          <div class="icon-bubble">
+            <a href="https://console.bluemix.net/catalog/services/investment-portfolio" target="_blank">
+            <img src="{{ url_for('static', filename='images/icons/portfolio_service.svg') }}" alt="investment portfolio api">
+            </a>
+          </div>
+          <p>
+            Investment Portfolio
+          </p>
+        </div>
+        <div class="wii-tile">
+
+          <div class="icon-bubble">
+            <a href="https://console.bluemix.net/catalog/services/natural-language-understanding" target="_blank">
+            <img src="{{ url_for('static', filename='images/icons/natural-language-understanding.svg') }}" alt="watson natural language understanding">
+            </a>
+          </div>
+          <p>
+            Natural Language Understanding
+          </p>
+        </div>
+        <div class="wii-tile">
+
+          <div class="icon-bubble">
+            <a href="https://console.bluemix.net/catalog/services/speech-to-text" target="_blank">
+            <img src="{{ url_for('static', filename='images/icons/speech-to-text.svg') }}" alt="watson speech to text">
+            </a>
+          </div>
+          <p>
+            Speech to Text
+          </p>
+        </div>
+        <div class="wii-tile">
+
+          <div class="icon-bubble">
+            <a href="https://console.bluemix.net/catalog/services/visual-recognition" target="_blank">
+            <img src="{{ url_for('static', filename='images/icons/vis_rec.svg') }}" alt="watson visual recognition">
+            </a>
+          </div>
+          <p>
+            Visual Recognition
+          </p>
+        </div>
+    </div>
+
+      <div class="wii-info__text">
+        <h3>
+          What you can do next
+          <p></p>
+        </h3>
+
+        <div class="wii-tile">
+          <a href="https://portfolio-optimize.mybluemix.net" target="_blank">
+            Rebalance your portfolio
+          </a>
+          <p>
+              Rebalance an investment portfolio based on a wide range of objectives and investor preferences such as avoiding sin stocks, focusing on socially responsible investments, or limiting contribution to asset classes, all while minimizing the overall volatility with respect to a benchmark.
+          </p>
+        </div>
+
+        <div class="wii-tile">
+          <a href="https://predictive-market-stress-testing.mybluemix.net" target="_blank">
+            Stress test your portfolio
+          </a>
+          <p>
+              Project the potential impact to your portfolio based on the result of a macroeconomic shock and its resulting, correlated effects on the rest of the market.
+          </p>
+        </div>
+       
+        <div class="wii-tile">
+          <a href="https://integrate-investment-portfolio.mybluemix.net/" target="_blank">
+            Build a new portfolio
+          </a>
+          <p>
+              Import a new portfolio from your personal brokerage using Quovo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="tab-content">
+      <div class="tab tab-one" id="tab-one">
+
+        <div class="date">
+          <a>05/17/1978</a>
+          <button id="downloadtoCSV" class="upload Button" aria-label="Run Analysis">
+            Download to CSV
+          </button>
+        </div>
+        
+        <div class="pl-table">
+          <div class="pl-table__header">
+            <div class="tab-title title1">
+              <h3>Projected impact on your portfolio</h3>
+            </div>
+          </div>
+          <div class="port-table__wrapper">
+            <div class="port-table">
+              <table>
+                <thead>
+                  <!--
+                  <tr style="width: 100%">
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Company
+                    </th>
+                    <th>
+                      Quantity
+                    </th>
+                    <th>
+                      Current Price
+                    </th>
+                    <th>
+                      Stressed Price
+                    </th>
+                    <th>
+                      Profit/Loss
+                    </th>
+                  </tr>
+                -->
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      a
+                    </td>
+                    <td>
+                      b
+                    </td>
+                    <td>
+                      c
+                    </td>
+                    <td>
+                      d
+                    </td>
+                    <td>
+                      e
+                    </td>
+                    <td>
+                      f
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+<script src="{{ url_for('static', filename='js/update.js') }}"></script>
+<script src="{{ url_for('static', filename='js/run_analysis.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    //$('.tab-bead').width($('.tab-title:nth-child(1)').width() + 24);
+    updateText();
+  });
+
+  $('.new-analysis').click(function() {
+    //$('.sandboxtwo').toggleClass('analysis');
+    location.reload();
+  });
+</script>

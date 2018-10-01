@@ -1,0 +1,31 @@
+POSITIONS,UNIQUE ID,ID TYPE,NAME,POSITION UNITS,PORTFOLIO,PRICE,CURRENCY,Asset Class,Ticker
+,US88579Y1010,ISIN,3M,100,Blue Chip Fund,,USD,Equity,MMM
+,US0258161092,,American Express,100,Blue Chip Fund,,USD,Equity,AXP
+,US0378331005,,Apple,100,Blue Chip Fund,,USD,Equity,AAPL
+,US0970231058,,Boeing,100,Blue Chip Fund,,USD,Equity,BA
+,US1491231015,,Caterpillar,100,Blue Chip Fund,,USD,Equity,CAT
+,US1667641005,,Chevron,100,Blue Chip Fund,,USD,Equity,CVX
+,US17275R1023,,Cisco Systems,100,Blue Chip Fund,,USD,Equity,CSCO
+,US1912161007,,Coca-Cola,100,Blue Chip Fund,,USD,Equity,KO
+,US26078J1007,,DowDuPont,100,Blue Chip Fund,,USD,Equity,DWDP
+,US30231G1022,,ExxonMobil,100,Blue Chip Fund,,USD,Equity,XOM
+,US38141G1040,,Goldman Sachs,100,Blue Chip Fund,,USD,Equity,GS
+, US4370761029,,The Home Depot,100,Blue Chip Fund,,USD,Equity,HD
+,US4592001014 ,,IBM,100,Blue Chip Fund,,USD,Equity,IBM
+,US4581401001,,Intel,100,Blue Chip Fund,,USD,Equity,INTC
+,US4781601046,,Johnson & Johnson,100,Blue Chip Fund,,USD,Equity,JNJ
+,US46625H1005,,JPMorgan Chase,100,Blue Chip Fund,,USD,Equity,JPM
+,US5801351017,,McDonald's,100,Blue Chip Fund,,USD,Equity,MCD
+,US58933Y1055,,Merck & Company,100,Blue Chip Fund,,USD,Equity,MRK
+,US5949181045,,Microsoft,100,Blue Chip Fund,,USD,Equity,MSFT
+,US6541061031,,Nike,100,Blue Chip Fund,,USD,Equity,NKE
+,US7170811035,,Pfizer,100,Blue Chip Fund,,USD,Equity,PFE
+,US7427181091,,Procter & Gamble,100,Blue Chip Fund,,USD,Equity,PG
+,US89417E1091,,Travelers,100,Blue Chip Fund,,USD,Equity,TRV
+,US91324P1021,,UnitedHealth Group,100,Blue Chip Fund,,USD,Equity,UNH
+,US9130171096,,United Technologies,100,Blue Chip Fund,,USD,Equity,UTX
+,US92343V1044,,Verizon,100,Blue Chip Fund,,USD,Equity,VZ
+,US92826C8394,,Visa,100,Blue Chip Fund,,USD,Equity,VZ
+,US9311421039,,Walmart,100,Blue Chip Fund,,USD,Equity,WMT
+,US9314271084,,Walgreens Boots Alliance,100,Blue Chip Fund,,USD,Equity,WBA
+,US2546871060,,Walt Disney,100,Blue Chip Fund,,USD,Equity,DIS

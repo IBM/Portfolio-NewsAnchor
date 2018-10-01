@@ -1,0 +1,10 @@
+Flask==0.10.1
+requests
+python-dotenv
+numpy
+pytesseract
+tesseract
+opencv-python
+Pillow
+imutils
+ffmpeg
