@@ -1,14 +1,32 @@
-declared-services:
-  Investment-Portfolio:
-    label: fss-portfolio-service
-    plan: fss-portfolio-service-free-plan
-applications:
-- path: .
-  memory: 256M
-  instances: 1
-  name: Portfolio-NewsAnchor
-  disk_quota: 1024M
-  domain: mybluemix.net
-  services:
-  - Investment-Portfolio
-  buildpack: python_buildpack
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: portfolio-newsanchor
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: portfolio-newsanchor
+        version: v1
+    spec:
+      containers:
+      - name: portfolio-newsanchor
+        image: docker.io/ash7594/portfolio-newsanchor
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio-newsanchor-service
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 32000
+      name: http
+  type: LoadBalancer
+  selector:
+    name: portfolio-newsanchor

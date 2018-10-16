@@ -62,3 +62,7 @@
 .clip-metadata {
 	font-weight: bold;
 }
+
+.newsfeed_container {
+  overflow: hidden;
+}

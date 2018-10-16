@@ -1,0 +1,11 @@
+declared-services:
+  Investment-Portfolio:
+    label: fss-portfolio-service
+    plan: fss-portfolio-service-free-plan
+applications:
+- memory: 256M
+  instances: 1
+  name: Portfolio-NewsAnchor
+  disk_quota: 1024M
+  services:
+  - Investment-Portfolio

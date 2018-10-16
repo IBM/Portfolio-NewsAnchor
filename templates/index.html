@@ -3,7 +3,7 @@
 
 <head>
   <title>
-    Portfolio Analytics Computation
+    Portfolio News Anchor
   </title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="{{ url_for('static', filename='images/WatsonLogo.png') }}" rel="icon" type="image/png">
@@ -36,7 +36,7 @@
     </div>
     <div class="article-input">
       <div class="article-input__hero">
-        Let Watson watch financial news so you don't have to 
+        Watson can watch financial news to tell you when to tune in
       </div>
       <div class="article-input__triple">
         <div class="article-input__portfolio">
@@ -60,18 +60,16 @@
             </div>
               <input type="file" id="portfolio_file" class="" aria-label="upload portfolio">
              <br><br>
-            <div class="article-input__header">
-              Upload News-stream
+            <!--<div class="article-input__header">
+              Upload a video file directly or...
             </div>
+            
             <form id="video_form" method="post" action="" enctype="multipart/form-data">
               <input type="file" name="file" id="news_stream_file" class="" aria-label="upload news stream">
             </form>
-            <div id="success_video_container">
-            </div>
-
-             <!--
+            <br-->
               <button id="show_feeds" class="upload Button" aria-label="Run Analysis">
-                Select News Channels
+                Select a News Channel Feed
               </button>
               <div id="feeds" align="left">
                 <br>
@@ -86,26 +84,21 @@
                     <td></td>
                 </tr>
                   <tr>
-                    <td><br><input type='checkbox' name='feeds' value='http://www.livenewson.com/american/cnbc-america.html' checked='checked'>CNBC<br></td>
+                    <td><br><input type='checkbox' name='feeds' value='https://www.youtube.com/watch?v=XOacA3RYrXk' >Sky News<br></td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
-                    <td><br><input type='checkbox' name='analytics' value='http://video.foxbusiness.com/v/5614626175001/' >Fox Business News<br></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td><br><input type='checkbox' name='analytics' value='https://www.bloomberg.com/live/us'>Bloomberg News<br></td>
+                    <td><br><input type='checkbox' name='feeds' value='https://www.bloomberg.com/live/us'>Bloomberg News<br></td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>                                                                                                
                 </table>
               </div>
-             -->
+            <div id="success_video_container">
+						</div>
             <div class="article-input__run">
               <button class="run-analysis Button" aria-label="Run Analysis">Start Watching</button>
             </div>
@@ -185,7 +178,7 @@
             Rebalance your portfolio
           </a>
           <p>
-              Rebalance an investment portfolio based on a wide range of objectives and investor preferences such as avoiding sin stocks, focusing on socially responsible investments, or limiting contribution to asset classes, all while minimizing the overall volatility with respect to a benchmark.
+              Rebalance an investment portfolio based on a wide range of objectives and investor preferences such as avoiding sin stocks, focusing on socially responsible investments, or limiting contribution to asset classes, all while minimizing the overall volatility with respect to a benchmark.
           </p>
         </div>
 

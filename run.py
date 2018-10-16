@@ -175,10 +175,19 @@ def compute_unit_tests():
     Breaks into 500 instrument chunks to comply with container constraints.
     '''
     print('Ash - Inside computing')
+    portfolios = []
+    feeds = []
     if request.method == 'POST':
-        portfolios = []
         data = json.loads(request.data)
         portfolios.append(data["portfolio"])
+        feeds.append(data["feeds"])
+        print(portfolios)
+        print(feeds)
+    else:
+        return "API not available through GET"
+    
+    if len(feeds) == 0:
+        return json.dumps({'success':'false', 'metadata':'No feeds selected'}), 400, {'ContentType':'application/json'}
 
     #Stopwatch
     start_time = datetime.datetime.now()
@@ -198,6 +207,8 @@ def compute_unit_tests():
     print(tickers)
     print("Total time elapsed: " + str(datetime.datetime.now() - start_time))
     ##return json.dumps({'success':'true', 'metadata':'yo'}), 200, {'ContentType':'application/json'}
+
+    return json.dumps({'success':'true', 'metadata':'Processing started'}), 200, {'ContentType':'application/json'}
     
     #initiate processor
     command = "python processor/main.py"
