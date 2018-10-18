@@ -1,5 +1,5 @@
-# Written by Rob Seidman on 08/21/2018
 from flask import Flask, render_template, jsonify, json, url_for, request, redirect, Response, flash, abort, make_response, send_file, send_from_directory
+from flask_socketio import SocketIO
 import requests
 import io
 import os
@@ -241,37 +241,32 @@ def compute_unit_tests():
     metadataFile = "clips/clip.metadata"
 
     if bloomUsNews in feeds:
-        bloomUsProcess = subprocess.Popen(['python3', 'processor/main.py', bloomUsNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        bloomUsProcess = subprocess.Popen(['python', 'processor/main.py', bloomUsNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         t = threading.Thread(target=output_reader, args=(bloomUsProcess,))
         t.start()
     if bloomGlobNews in feeds:
-        bloomGlobProcess = subprocess.Popen(['python3', 'processor/main.py', 'https://www.youtube.com/watch?v=Ga3maNZ0x0w'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        bloomGlobProcess = subprocess.Popen(['python', 'processor/main.py', 'https://www.youtube.com/watch?v=Ga3maNZ0x0w'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         t = threading.Thread(target=output_reader, args=(bloomGlobProcess,))
         t.start()
     if skyNews in feeds:
-        skyProcess = subprocess.Popen(['python3', 'processor/main.py', skyNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        print("Sky News feed...")
+        skyProcess = subprocess.Popen(['python', 'processor/main.py', skyNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         t = threading.Thread(target=output_reader, args=(skyProcess,))
         t.start()
     if cnbcAfricaNews in feeds:
-        cnbcAfricaProcess = subprocess.Popen(['python3', 'processor/main.py', cnbcAfricaNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        cnbcAfricaProcess = subprocess.Popen(['python', 'processor/main.py', cnbcAfricaNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         t = threading.Thread(target=output_reader, args=(cnbcAfricaProcess,))
         t.start()
     
     return json.dumps({'success':'true', 'metadata':'Processor started on feeds' + str(feeds)}), 200, {'ContentType':'application/json'}
 
-#    for feed in feeds:
-#        if os.system(command + " " + feed) == 0:
-#            with open(metadataFile, 'rb') as fp:
-#                metadata = pickle.load(fp)
-#            return json.dumps({'success':'true', 'metadata':metadata}), 200, {'ContentType':'application/json'}
-#        else:
-#            print("ERROR in processor")
-#            return json.dumps({'success':'fail fail ash'}), 500, {'ContentType':'application/json'}
-    #return Response(json.dumps(tickers), mimetype='application/json')
-
 def output_reader(proc):
+    validCommPrefix = 'parentPing:'
     for line in iter(proc.stdout.readline, b''):
-        print('got line: {0}'.format(line.decode('utf-8')), end='')
+        ocr_str = line.decode('utf-8')
+        if ocr_str.startswith(validCommPrefix):
+            ocr_str = ocr_str.lstrip(validCommPrefix)
+            print(ocr_str)
 
 if __name__ == '__main__':
     app.run(host=host, port=port)

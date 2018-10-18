@@ -164,7 +164,8 @@ def main():
         #os.remove(tempFile)
 
         print(count)
-        print(text)
+        print("parentPing:" + text)
+        sys.stdout.flush()
 
         tokens = preprocessExtractedText(text)
         interesting, keywordsFound = isFrameInteresting(tokens)
