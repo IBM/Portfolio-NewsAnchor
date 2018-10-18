@@ -108,10 +108,16 @@ $('.run-analysis.Button').click(function(){
         return;
       }
       if(selected.includes("https://www.bloomberg.com/live/us") > 0){
-            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" src="https://www.bloomberg.com/live/us?width=560&height=315&autoPlay=true&mute=false" width="560" height="365" scrolling="no" style="margin-top: -50px;"></iframe></div><br>');
+            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" src="https://www.bloomberg.com/live/us?width=560&height=315&autoPlay=true&mute=false" width="560" height="365" scrolling="no" style="margin-top: -50px;"></iframe></div>');
       }
       if(selected.includes("https://www.youtube.com/watch?v=XOacA3RYrXk") > 0){
-            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe width="560" height="315" type="text/html" src="https://www.youtube.com/embed/XOacA3RYrXk?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div><br>');
+            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe width="560" height="315" type="text/html" src="https://www.youtube.com/embed/XOacA3RYrXk?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
+      }
+      if(selected.includes("https://www.bloomberg.com/live") > 0){
+            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" src="https://www.bloomberg.com/live?width=560&height=315&autoPlay=true&mute=false" width="560" height="365" scrolling="no" style="margin-top: -50px;"></iframe></div>');
+      }
+      if(selected.includes("https://www.youtube.com/watch?v=IpmKglKxQpA") > 0){
+            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe width="560" height="315" type="text/html" src="https://www.youtube.com/embed/IpmKglKxQpA?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
       }
       $('.sandboxtwo').toggleClass('loading');
       $('.loader').addClass('active');

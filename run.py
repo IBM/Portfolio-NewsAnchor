@@ -9,9 +9,20 @@ import investmentportfolio
 from pprint import pprint
 from werkzeug.utils import secure_filename
 import pickle
+import subprocess
+import threading
 
 print ('Running portfolio.compute.py')
 app = Flask(__name__)
+bloomUsProcess = None
+bloomGlobProcess = None
+skyProcess = None
+cnbcAfricaProcess = None
+
+bloomUsNews = 'https://www.bloomberg.com/live/us'
+bloomGlobNews = 'https://www.bloomberg.com/live'
+skyNews = 'https://www.youtube.com/watch?v=XOacA3RYrXk'
+cnbcAfricaNews = 'https://www.youtube.com/watch?v=IpmKglKxQpA'
 
 # On Bluemix, get the port number from the environment variable VCAP_APP_PORT
 # When running this app on the local machine, default the port to 8080
@@ -170,22 +181,41 @@ def get_unit_test_delete():
 #Calculates unit tests for a list of portfolios
 @app.route('/api/news_anchor',methods=['POST'])
 def compute_unit_tests():
+    global bloomUsProcess, bloomGlobProcess, skyProcess, cnbcAfricaProcess, bloomUsNews, bloomGlobNews, skyNews, cnbcAfricaNews
     '''
     Calculates analytics for a portfolio.
     Breaks into 500 instrument chunks to comply with container constraints.
     '''
     print('Ash - Inside computing')
+    if (bloomUsProcess != None):
+        bloomUsProcess.terminate()
+        bloomUsProcess = None
+    if (bloomGlobProcess != None):
+        bloomGlobProcess.terminate()
+        bloomGlobProcess = None 
+    if (skyProcess != None):
+        skyProcess.terminate()
+        skyProcess = None 
+    if (cnbcAfricaProcess != None):
+        cnbcAfricaProcess.terminate()
+        cnbcAfricaProcess = None 
+    
     portfolios = []
-    feeds = []
+    feeds = None
     if request.method == 'POST':
         data = json.loads(request.data)
         portfolios.append(data["portfolio"])
-        feeds.append(data["feeds"])
+        feeds = data["feeds"]
         print(portfolios)
         print(feeds)
     else:
         return "API not available through GET"
     
+    #clean
+    for root, dirs, files in os.walk('clips/'):  
+        for filename in files:
+            os.remove('clips/' + filename)
+
     if len(feeds) == 0:
         return json.dumps({'success':'false', 'metadata':'No feeds selected'}), 400, {'ContentType':'application/json'}
 
@@ -206,22 +236,42 @@ def compute_unit_tests():
 
     print(tickers)
     print("Total time elapsed: " + str(datetime.datetime.now() - start_time))
-    ##return json.dumps({'success':'true', 'metadata':'yo'}), 200, {'ContentType':'application/json'}
 
-    return json.dumps({'success':'true', 'metadata':'Processing started'}), 200, {'ContentType':'application/json'}
-    
     #initiate processor
-    command = "python processor/main.py"
     metadataFile = "clips/clip.metadata"
-    if os.system(command) == 0:
-        print('yo yo')
-        with open(metadataFile, 'rb') as fp:
-            metadata = pickle.load(fp)
-        return json.dumps({'success':'true', 'metadata':metadata}), 200, {'ContentType':'application/json'}
-    else:
-        print("ERROR in processor")
-        return json.dumps({'success':'fail fail ash'}), 500, {'ContentType':'application/json'}
+
+    if bloomUsNews in feeds:
+        bloomUsProcess = subprocess.Popen(['python3', 'processor/main.py', bloomUsNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        t = threading.Thread(target=output_reader, args=(bloomUsProcess,))
+        t.start()
+    if bloomGlobNews in feeds:
+        bloomGlobProcess = subprocess.Popen(['python3', 'processor/main.py', 'https://www.youtube.com/watch?v=Ga3maNZ0x0w'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        t = threading.Thread(target=output_reader, args=(bloomGlobProcess,))
+        t.start()
+    if skyNews in feeds:
+        skyProcess = subprocess.Popen(['python3', 'processor/main.py', skyNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        t = threading.Thread(target=output_reader, args=(skyProcess,))
+        t.start()
+    if cnbcAfricaNews in feeds:
+        cnbcAfricaProcess = subprocess.Popen(['python3', 'processor/main.py', cnbcAfricaNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        t = threading.Thread(target=output_reader, args=(cnbcAfricaProcess,))
+        t.start()
+    
+    return json.dumps({'success':'true', 'metadata':'Processor started on feeds' + str(feeds)}), 200, {'ContentType':'application/json'}
+
+#    for feed in feeds:
+#        if os.system(command + " " + feed) == 0:
+#            with open(metadataFile, 'rb') as fp:
+#                metadata = pickle.load(fp)
+#            return json.dumps({'success':'true', 'metadata':metadata}), 200, {'ContentType':'application/json'}
+#        else:
+#            print("ERROR in processor")
+#            return json.dumps({'success':'fail fail ash'}), 500, {'ContentType':'application/json'}
     #return Response(json.dumps(tickers), mimetype='application/json')
+
+def output_reader(proc):
+    for line in iter(proc.stdout.readline, b''):
+        print('got line: {0}'.format(line.decode('utf-8')), end='')
 
 if __name__ == '__main__':
     app.run(host=host, port=port)

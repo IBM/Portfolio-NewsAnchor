@@ -1,11 +1,12 @@
 import cv2
 import streamlink
 
-streams = streamlink.streams('www.youtube.com/watch?v=XOacA3RYrXk')
+streams = streamlink.streams('https://www.youtube.com/watch?v=IpmKglKxQpA')
 url = streams['best'].url
 print(url)
 cap = cv2.VideoCapture(url)
 
+print(int(round(cap.get(5))))
 index = 1
 while index < 11:
     succ, frame = cap.read()

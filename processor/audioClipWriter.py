@@ -9,7 +9,7 @@ class AudioClipWriter:
         self.stream = stream
         self.fps = fps
         self.threads = []
-        self.audioFromStream = AudioSegment.from_file(stream, "mp4")
+        #self.audioFromStream = AudioSegment.from_file(stream, "mp4")
 
     def start(self, clip, sFrame, eFrame):
         self.threads.append(Thread(target=self.write, args=(clip,sFrame,eFrame,)))
@@ -26,14 +26,14 @@ class AudioClipWriter:
         finalClipFile = "clips/" + str(sFrame) + "clip.avi"
 
         #Extract Audio of interest
-        audio = self.audioFromStream[sTime*1000: eTime*1000]
-        audio.export(audioFile, format="wav")
+        #audio = self.audioFromStream[sTime*1000: eTime*1000]
+        #audio.export(audioFile, format="wav")
 
         #Mux video and Audio
-        command = "ffmpeg -i " + videoFile + " -i " + audioFile + " -c:v copy -c:a copy " + finalClipFile
-        subprocess.call(command, shell=True)
+        #command = "ffmpeg -i " + videoFile + " -i " + audioFile + " -c:v copy -c:a copy " + finalClipFile
+        #subprocess.call(command, shell=True)
         
-        self.clean(audioFile, videoFile)
+        #self.clean(audioFile, videoFile)
 
     def clean(self, audioFile, videoFile):
         os.remove(audioFile)
