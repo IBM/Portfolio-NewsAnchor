@@ -1,3 +1,28 @@
+// Socket msgs
+var socket = io.connect(location.protocol + '//' + location.host);
+
+socket.on('connect', function() {
+  socket.emit('user_connect', {data: 'user connected'});
+});
+
+socket.on('feed-bloom-us', function(data) {
+  console.log(data);
+});
+
+socket.on('feed-bloom-glob', function(data) {
+  console.log(data);
+});
+
+socket.on('feed-sky', function(data) {
+  console.log(data);
+});
+
+socket.on('feed-cnbc-africa', function(data) {
+  console.log(data);
+});
+
+//////////////
+
 var apiUrl = location.protocol + '//' + location.host + location.pathname + "api/";
 var AjaxResponse = {};
 $('#show_feeds').click(function() {

@@ -14,6 +14,8 @@ import threading
 
 print ('Running portfolio.compute.py')
 app = Flask(__name__)
+socketio = SocketIO(app)
+
 bloomUsProcess = None
 bloomGlobProcess = None
 skyProcess = None
@@ -49,6 +51,10 @@ if 'RUN_LOCAL' in os.environ:
     os.environ['VCAP_SERVICES'] = json.dumps(data)
 
 #======================================MAIN PAGES======================================
+@socketio.on('user_connect')
+def handle_msg(msg):
+    print(msg)
+
 @app.route('/')
 def run():
     """
@@ -241,32 +247,64 @@ def compute_unit_tests():
     metadataFile = "clips/clip.metadata"
 
     if bloomUsNews in feeds:
+        print("Bloomberg US feed...")
         bloomUsProcess = subprocess.Popen(['python', 'processor/main.py', bloomUsNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        t = threading.Thread(target=output_reader, args=(bloomUsProcess,))
+        t = threading.Thread(target=output_reader_bloom_us, args=(bloomUsProcess,))
         t.start()
     if bloomGlobNews in feeds:
+        print("Bloomberg Global feed...")
         bloomGlobProcess = subprocess.Popen(['python', 'processor/main.py', 'https://www.youtube.com/watch?v=Ga3maNZ0x0w'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        t = threading.Thread(target=output_reader, args=(bloomGlobProcess,))
+        t = threading.Thread(target=output_reader_bloom_glob, args=(bloomGlobProcess,))
         t.start()
     if skyNews in feeds:
         print("Sky News feed...")
         skyProcess = subprocess.Popen(['python', 'processor/main.py', skyNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        t = threading.Thread(target=output_reader, args=(skyProcess,))
+        t = threading.Thread(target=output_reader_sky, args=(skyProcess,))
         t.start()
     if cnbcAfricaNews in feeds:
+        print("CNBC Africa feed...")
         cnbcAfricaProcess = subprocess.Popen(['python', 'processor/main.py', cnbcAfricaNews], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        t = threading.Thread(target=output_reader, args=(cnbcAfricaProcess,))
+        t = threading.Thread(target=output_reader_cnbc_africa, args=(cnbcAfricaProcess,))
         t.start()
     
     return json.dumps({'success':'true', 'metadata':'Processor started on feeds' + str(feeds)}), 200, {'ContentType':'application/json'}
 
-def output_reader(proc):
+def output_reader_bloom_us(proc):
     validCommPrefix = 'parentPing:'
     for line in iter(proc.stdout.readline, b''):
         ocr_str = line.decode('utf-8')
         if ocr_str.startswith(validCommPrefix):
             ocr_str = ocr_str.lstrip(validCommPrefix)
             print(ocr_str)
+            socketio.emit('feed-bloom-us', {'data': ocr_str})
+
+def output_reader_bloom_glob(proc):
+    validCommPrefix = 'parentPing:'
+    for line in iter(proc.stdout.readline, b''):
+        ocr_str = line.decode('utf-8')
+        if ocr_str.startswith(validCommPrefix):
+            ocr_str = ocr_str.lstrip(validCommPrefix)
+            print(ocr_str)
+            socketio.emit('feed-bloom-glob', {'data': ocr_str})
+
+def output_reader_sky(proc):
+    validCommPrefix = 'parentPing:'
+    for line in iter(proc.stdout.readline, b''):
+        ocr_str = line.decode('utf-8')
+        if ocr_str.startswith(validCommPrefix):
+            ocr_str = ocr_str.lstrip(validCommPrefix)
+            print(ocr_str)
+            socketio.emit('feed-sky', {'data': ocr_str})
+
+def output_reader_cnbc_africa(proc):
+    validCommPrefix = 'parentPing:'
+    for line in iter(proc.stdout.readline, b''):
+        ocr_str = line.decode('utf-8')
+        if ocr_str.startswith(validCommPrefix):
+            ocr_str = ocr_str.lstrip(validCommPrefix)
+            print(ocr_str)
+            socketio.emit('feed-cnbc-africa', {'data': ocr_str})
 
 if __name__ == '__main__':
-    app.run(host=host, port=port)
+    print(str(host) + ":" + str(port))
+    socketio.run(app, host=host, port=port)
