@@ -4,6 +4,7 @@ var apiUrl = location.protocol + '//' + location.host + location.pathname + "api
 function updateText() {
 
     console.log("apiUrl: " + apiUrl)
+    $('#video_tbl').hide();
     //update portfolio lists
     var portfolioLists;
     $.get(apiUrl + 'news_anchor_portfolios', function(data) {

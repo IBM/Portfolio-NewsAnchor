@@ -2,7 +2,6 @@ import subprocess
 import numpy as np
 from threading import Thread
 import os
-from pydub import AudioSegment
 
 class AudioClipWriter:
     def __init__(self, stream, fps):

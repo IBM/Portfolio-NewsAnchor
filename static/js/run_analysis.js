@@ -7,18 +7,22 @@ socket.on('connect', function() {
 
 socket.on('feed-bloom-us', function(data) {
   console.log(data);
+  $('#analysis2').text(data)
 });
 
 socket.on('feed-bloom-glob', function(data) {
   console.log(data);
+  $('#analysis3').text(data)
 });
 
 socket.on('feed-sky', function(data) {
   console.log(data);
+  $('#analysis1').text(data)
 });
 
 socket.on('feed-cnbc-africa', function(data) {
   console.log(data);
+  $('#analysis4').text(data)
 });
 
 //////////////
@@ -125,6 +129,7 @@ $('.run-analysis.Button').click(function(){
         alert("Select a portfolio");
         return;
       }
+      $('#video_tbl').show();
 			//need to make this based on which stream selected (currently only one choice).
       //do we make the streams mutually exclusive, or actually allow multiple. Probably multiple if the analysis can be parallelized...
       console.log(selected);
@@ -133,16 +138,16 @@ $('.run-analysis.Button').click(function(){
         return;
       }
       if(selected.includes("https://www.bloomberg.com/live/us") > 0){
-            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" src="https://www.bloomberg.com/live/us?width=560&height=315&autoPlay=true&mute=false" width="560" height="365" scrolling="no" style="margin-top: -50px;"></iframe></div>');
+            $('#feed1').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" height="320" src="https://www.bloomberg.com/live/us?width=560&height=315&autoPlay=true&mute=false" width="480" scrolling="no" style="margin-top: -50px;"></iframe></div>');
       }
       if(selected.includes("https://www.youtube.com/watch?v=XOacA3RYrXk") > 0){
-            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe width="560" height="315" type="text/html" src="https://www.youtube.com/embed/XOacA3RYrXk?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
+            $('#feed2').append('<br><div class="newsfeed_container"><iframe width="480" height="270"  type="text/html" src="https://www.youtube.com/embed/XOacA3RYrXk?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
       }
       if(selected.includes("https://www.bloomberg.com/live") > 0){
-            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" src="https://www.bloomberg.com/live?width=560&height=315&autoPlay=true&mute=false" width="560" height="365" scrolling="no" style="margin-top: -50px;"></iframe></div>');
+            $('#feed3').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" height="320"src="https://www.bloomberg.com/live?width=560&height=315&autoPlay=true&mute=false" width="480" scrolling="no" style="margin-top: -50px;"></iframe></div>');
       }
       if(selected.includes("https://www.youtube.com/watch?v=IpmKglKxQpA") > 0){
-            $('#success_video_container').append('<br><div class="newsfeed_container"><iframe width="560" height="315" type="text/html" src="https://www.youtube.com/embed/IpmKglKxQpA?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
+            $('#feed4').append('<br><div class="newsfeed_container"><iframe width="480" height="270" type="text/html" src="https://www.youtube.com/embed/IpmKglKxQpA?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
       }
       $('.sandboxtwo').toggleClass('loading');
       $('.loader').addClass('active');

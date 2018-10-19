@@ -4339,9 +4339,9 @@ body {
       right: calc((100vw - 900px )/ 2);
       top: calc(50% - 20px); }
   .sandboxtwo table th:last-child {
-    text-align: right; }
+    text-align: left; }
   .sandboxtwo table td:last-child {
-    text-align: right; }
+    text-align: left; }
   .sandboxtwo table td.green {
     color: #19B50A; }
   .sandboxtwo table td.red {
