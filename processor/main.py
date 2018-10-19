@@ -149,19 +149,19 @@ def main():
             count += 1
             continue
         
-        tempFile = "frame" + str(count) + str(randint(10000,99999)) + "_1.jpg"
-        cv2.imwrite(tempFile, originalImg)
+        #tempFile = "frame" + str(count) + str(randint(10000,99999)) + "_1.jpg"
+        #cv2.imwrite(tempFile, originalImg)
         
         img = getImageWithText(originalImg)
-        tempFile = "frame" + str(count) + str(randint(10000,99999)) + "_2.jpg"
-        cv2.imwrite(tempFile, img)
+        #tempFile = "frame" + str(count) + str(randint(10000,99999)) + "_2.jpg"
+        #cv2.imwrite(tempFile, img)
         
         img = binariseImage(img)
         tempFile = "frame" + str(count) + str(randint(10000,99999)) + "_3.jpg"
         cv2.imwrite(tempFile, img)
 
         text = pytesseract.image_to_string(Image.open(tempFile))
-        #os.remove(tempFile)
+        os.remove(tempFile)
 
         print(count)
         print("parentPing:" + text)

@@ -158,28 +158,27 @@ $('.run-analysis.Button').click(function(){
         },
         success: function(res) {
           console.log(res.metadata);
-          //res = JSON.parse(res);
           // clips
-          for (index in res.metadata) {
-            var clip = res.metadata[index];
-            $('#success_video_container').append(
-                '<br>' +
-                '<div class="clip-div">' +
-                  '<div style="padding: inherit">' +
-                    '<a href="/clips/'+clip.filename+'" download>' +
-                      '<Button class="clip-download-btn"><i class="fa fa-download"></i> Download clip </button>' +
-                    '</a>' +
-                  '</div>' +
-                  '<div style="padding: inherit">' +
-                    '<span class="clip-meta">Keywords:&nbsp'+clip.keyword+'</span>' +
-                    '<br>' +
-                    '<span class="clip-meta">Start Time:&nbsp'+clip.start+'</span>' +
-                    '<br>' +
-                    '<span class="clip-meta">End Time:&nbsp'+clip.end+'</span>' +
-                  '</div>' +
-                '</div>'
-            );
-          }
+//          for (index in res.metadata) {
+//            var clip = res.metadata[index];
+//            $('#success_video_container').append(
+//                '<br>' +
+//                '<div class="clip-div">' +
+//                  '<div style="padding: inherit">' +
+//                    '<a href="/clips/'+clip.filename+'" download>' +
+//                      '<Button class="clip-download-btn"><i class="fa fa-download"></i> Download clip </button>' +
+//                    '</a>' +
+//                  '</div>' +
+//                  '<div style="padding: inherit">' +
+//                    '<span class="clip-meta">Keywords:&nbsp'+clip.keyword+'</span>' +
+//                    '<br>' +
+//                    '<span class="clip-meta">Start Time:&nbsp'+clip.start+'</span>' +
+//                    '<br>' +
+//                    '<span class="clip-meta">End Time:&nbsp'+clip.end+'</span>' +
+//                  '</div>' +
+//                '</div>'
+//            );
+//          }
           $('.sandboxtwo').removeClass('loading');
           $('.loader').removeClass('active');
         }
