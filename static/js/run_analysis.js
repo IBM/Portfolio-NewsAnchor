@@ -7,22 +7,22 @@ socket.on('connect', function() {
 
 socket.on('feed-bloom-us', function(data) {
   console.log(data);
-  $('#analysis2').text(data)
+  $('#analysis2').text(data['data'])
 });
 
 socket.on('feed-bloom-glob', function(data) {
   console.log(data);
-  $('#analysis3').text(data)
+  $('#analysis3').text(data['data'])
 });
 
 socket.on('feed-sky', function(data) {
   console.log(data);
-  $('#analysis1').text(data)
+  $('#analysis1').text(data['data'])
 });
 
 socket.on('feed-cnbc-africa', function(data) {
   console.log(data);
-  $('#analysis4').text(data)
+  $('#analysis4').text(data['data'])
 });
 
 //////////////
