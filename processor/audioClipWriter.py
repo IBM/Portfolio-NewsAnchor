@@ -20,11 +20,13 @@ class AudioClipWriter:
         eTime = int(eFrame/self.fps)
         duration = eTime - sTime
         
-        audioFile = "clips/" + str(sFrame) + ".wav"
+        #audioFile = "clips/" + str(sFrame) + ".wav"
         videoFile = "clips/" + str(clip)
         finalClipFile = "clips/" + str(sFrame) + "clip.avi"
 
-        ffmpeg -err_detect ignore_err -i hello.mp4 -c copy hello2.mp4
+        #Fix error in video recorded
+        command = "ffmpeg -err_detect ignore_err -i " + videoFile + " -c copy " + finalClipfile
+        subprocess.call(command, shell=True)
 
         #Extract Audio of interest
         #audio = self.audioFromStream[sTime*1000: eTime*1000]
@@ -34,10 +36,9 @@ class AudioClipWriter:
         #command = "ffmpeg -i " + videoFile + " -i " + audioFile + " -c:v copy -c:a copy " + finalClipFile
         #subprocess.call(command, shell=True)
         
-        #self.clean(audioFile, videoFile)
+        #self.clean(videoFile)
 
-    def clean(self, audioFile, videoFile):
-        os.remove(audioFile)
+    def clean(self, videoFile):
         os.remove(videoFile)
 
     def finish(self):
