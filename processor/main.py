@@ -127,6 +127,7 @@ def main():
     print(feed_stream)
     streams = streamlink.streams(feed_stream)
     print(streams)
+    fdurl = streams['best']
     stream = streams['best'].url
 
     vidcap = cv2.VideoCapture(stream)

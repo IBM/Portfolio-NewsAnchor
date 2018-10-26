@@ -24,6 +24,8 @@ class AudioClipWriter:
         videoFile = "clips/" + str(clip)
         finalClipFile = "clips/" + str(sFrame) + "clip.avi"
 
+        ffmpeg -err_detect ignore_err -i hello.mp4 -c copy hello2.mp4
+
         #Extract Audio of interest
         #audio = self.audioFromStream[sTime*1000: eTime*1000]
         #audio.export(audioFile, format="wav")

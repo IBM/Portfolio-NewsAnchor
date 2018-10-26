@@ -16,6 +16,7 @@ while index < 5000:
     print("hello")
     index += 1
 
+#verify optimization of this part by writing to file as soon as bytes are received.
 with open('hello.mp4','wb') as w:
     w.write(bytes_)
 fd.close()

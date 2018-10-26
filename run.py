@@ -273,36 +273,36 @@ def output_reader_bloom_us(proc):
     validCommPrefix = 'parentPing:'
     for line in iter(proc.stdout.readline, b''):
         ocr_str = line.decode('utf-8')
+        print(ocr_str)
         if ocr_str.startswith(validCommPrefix):
             ocr_str = ocr_str.lstrip(validCommPrefix)
-            print(ocr_str)
             socketio.emit('feed-bloom-us', {'data': ocr_str})
 
 def output_reader_bloom_glob(proc):
     validCommPrefix = 'parentPing:'
     for line in iter(proc.stdout.readline, b''):
         ocr_str = line.decode('utf-8')
+        print(ocr_str)
         if ocr_str.startswith(validCommPrefix):
             ocr_str = ocr_str.lstrip(validCommPrefix)
-            print(ocr_str)
             socketio.emit('feed-bloom-glob', {'data': ocr_str})
 
 def output_reader_sky(proc):
     validCommPrefix = 'parentPing:'
     for line in iter(proc.stdout.readline, b''):
         ocr_str = line.decode('utf-8')
+        print(ocr_str)
         if ocr_str.startswith(validCommPrefix):
             ocr_str = ocr_str.lstrip(validCommPrefix)
-            print(ocr_str)
             socketio.emit('feed-sky', {'data': ocr_str})
 
 def output_reader_cnbc_africa(proc):
     validCommPrefix = 'parentPing:'
     for line in iter(proc.stdout.readline, b''):
         ocr_str = line.decode('utf-8')
+        print(ocr_str)
         if ocr_str.startswith(validCommPrefix):
             ocr_str = ocr_str.lstrip(validCommPrefix)
-            print(ocr_str)
             socketio.emit('feed-cnbc-africa', {'data': ocr_str})
 
 if __name__ == '__main__':
