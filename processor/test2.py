@@ -1,7 +1,7 @@
 import cv2
 import streamlink
 
-streams = streamlink.streams('https://www.youtube.com/watch?v=IpmKglKxQpA')
+streams = streamlink.streams('https://www.youtube.com/watch?v=RD83Cs9entE')
 url = streams['best'].url
 print(url)
 cap = cv2.VideoCapture(url)

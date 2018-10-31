@@ -14,6 +14,7 @@ RUN ln -s /usr/bin/python3.6 /usr/local/bin/python
 RUN pip install flask && \
   pip install python-dotenv
 RUN apt-get install -y ffmpeg libavcodec-extra
+RUN pip install gevent
 RUN pip install flask-socketio
 RUN pip install requests
 RUN pip install numpy
@@ -23,6 +24,7 @@ RUN pip install pydub
 RUN pip install pytesseract
 RUN pip install imutils
 RUN pip install Pillow
+RUN pip install streamlink
 RUN apt-get install -y tesseract-ocr
   
 EXPOSE 8080

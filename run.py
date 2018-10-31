@@ -14,7 +14,7 @@ import threading
 
 print ('Running portfolio.compute.py')
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='gevent')
 
 bloomUsProcess = None
 bloomGlobProcess = None

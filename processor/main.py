@@ -175,14 +175,14 @@ def main():
             if not vcw.isRecording:
                 timestamp = datetime.datetime.now()
                 clipName = str(count) + ".avi"
-                vcw.start(keywordsFound, clipName, count, "clips/" + clipName, cv2.VideoWriter_fourcc('M','J','P','G'), frameRate)
+                vcw.start(fdurl, keywordsFound, clipName, count, "clips/" + clipName, cv2.VideoWriter_fourcc('M','J','P','G'), frameRate)
             elif not list(set(keywordsFound) & set(vcw.keywords)):
                 vcw.finish()
                 acw.start(vcw.clipName, vcw.startFrame, count)
                 writeMetadata(count)
                 
                 clipName = str(count) + ".avi"
-                vcw.start(keywordsFound, clipName, count, "clips/" + clipName, cv2.VideoWriter_fourcc('M','J','P','G'), frameRate)
+                vcw.start(fdurl, keywordsFound, clipName, count, "clips/" + clipName, cv2.VideoWriter_fourcc('M','J','P','G'), frameRate)
             else:
                 vcw.keywords = list(set(keywordsFound) | set(vcw.keywords))
         else:
