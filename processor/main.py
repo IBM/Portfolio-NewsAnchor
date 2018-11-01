@@ -17,7 +17,7 @@ from random import randint
 
 feed_stream = None
 stream = None
-keywords = ['yelp', 'e.l.f.']
+keywords = ['dummy_keyword_not_found']
 vcw = None
 acw = None
 consecFramesWithoutEvent = 0
@@ -26,7 +26,7 @@ frameRate = 30 #default
 bloomUsNews = 'https://www.bloomberg.com/live/us'
 bloomGlobNews = 'https://www.youtube.com/watch?v=Ga3maNZ0x0w'
 skyNews = 'https://www.youtube.com/watch?v=XOacA3RYrXk'
-cnbcAfricaNews = 'https://www.youtube.com/watch?v=IpmKglKxQpA'
+cnbcAfricaNews = 'https://www.youtube.com/watch?v=RD83Cs9entE'
 
 def getImageWithText(img):
     global bloomUsNews, bloomGlobNews, skyNews, cnbcAfricaNews

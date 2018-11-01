@@ -24,7 +24,7 @@ cnbcAfricaProcess = None
 bloomUsNews = 'https://www.bloomberg.com/live/us'
 bloomGlobNews = 'https://www.bloomberg.com/live'
 skyNews = 'https://www.youtube.com/watch?v=XOacA3RYrXk'
-cnbcAfricaNews = 'https://www.youtube.com/watch?v=IpmKglKxQpA'
+cnbcAfricaNews = 'https://www.youtube.com/watch?v=RD83Cs9entE'
 
 # On Bluemix, get the port number from the environment variable VCAP_APP_PORT
 # When running this app on the local machine, default the port to 8080
