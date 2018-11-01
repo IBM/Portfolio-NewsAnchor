@@ -220,6 +220,8 @@ def compute_unit_tests():
     #clean
     for root, dirs, files in os.walk('clips/'):  
         for filename in files:
+            if filename == 'empty.txt':
+                continue
             os.remove('clips/' + filename)
 
     if len(feeds) == 0:

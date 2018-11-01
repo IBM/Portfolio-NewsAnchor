@@ -147,7 +147,7 @@ $('.run-analysis.Button').click(function(){
             $('#feed3').append('<br><div class="newsfeed_container"><iframe id="bloomberg-stream" height="320"src="https://www.bloomberg.com/live?width=560&height=315&autoPlay=true&mute=false" width="480" scrolling="no" style="margin-top: -50px;"></iframe></div>');
       }
       if(selected.includes("https://www.youtube.com/watch?v=RD83Cs9entE") > 0){
-            $('#feed4').append('<br><div class="newsfeed_container"><iframe width="480" height="270" type="text/html" src="https://www.youtube.com/watch?v=RD83Cs9entE?autoplay=1&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com&mute=1"></iframe></div>');
+            $('#feed4').append('<br><div class="newsfeed_container"><iframe width="480" height="270" src="https://www.youtube.com/embed/RD83Cs9entE?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>');
       }
       $('.sandboxtwo').toggleClass('loading');
       $('.loader').addClass('active');
