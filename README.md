@@ -1,30 +1,30 @@
 # Watch live news for market changes which could affect your investments
 
-If you've ever set foot on a trading floor, you'd know there's almost always several TVs tuned to CNBC, Fox Business, Bloomberg News - essentially business news. The trading floor is anything but a quiet place making it all but impossible for traders to hear any of the content coming from those channels barring catastrophic breaking news. Breaking news also tends to be about large, visible companies; smaller company news may have larger impacts on individual fund managers or equity researchers than these large news stories but may go undetected as they are shorter news segments or buried in broader stories.
+If you've ever set foot on a trading floor, you know that there are almost always several TVs tuned to business news stations. The trading floor is anything but a quiet place, making it all but impossible for traders to hear any of the content coming from those channels other than catastrophic breaking news. Breaking news also tends to be about larger, more visible companies; news about smaller companies may have a greater impact on individual fund managers or equity researchers than these big news stories, but may go undetected as these news segments tend to be shorter and can get buried beneath the larger stories.
 
-In this code pattern, we will create a web application which takes an investment portfolio of a user as input, and monitors multiple live news streams in real time to identify if tickers in the portfolio are talked about in the media. If such an event is discovered in the news, the application will begin recording the content of the stream till the news anchors move on to another subject. These clips are then sent back to the user so they can watch these clips in their own time, and prepare for potential market changes that would affect their portfolio.
+This code pattern shows you how to create a web application that takes the user's investment portfolio as input and monitors multiple live news streams in real time to identify what tickers in the portfolio are covered in the media. If the app comes across a relevant event in the news, it records the content of the stream until the news source moves on to another subject. It then sends these clips back to the user so they can watch these clips at their convenience, and prepare for potential market changes that could affect their portfolio.
 
-This code pattern is for developers looking to integrate with the investment portfolio services and use it to monitor live video feed. When the reader has completed this code pattern, they will understand how to:
+This code pattern is for developers who want to integrate with the investment portfolio services and use them to monitor live video feeds. When you have completed it, you will understand how to:
 
-* Create a Flask web application which is integrated with the investment portfolio service.
-* Monitor live video feed in real time using python.
-* Use OpenCV and Tesseract-OCR to perform character recognition of frames of a video feed.
-* Use Web Sockets for real time streaming of data between the server and client application.
+* Create a Flask web app that is integrated with the Investment Portfolio service.
+* Monitor live video feeds in real time using Python.
+* Use OpenCV and Tesseract-OCR to perform character recognition on the frames in a video feed.
+* Use Web Sockets for real-time streaming of data between the server and the client application.
 
 # Architecture Flow
 
 ![Architecture Flow](docs/doc-images/arch-flow.png?raw=true)
 
-1. The user sends their investment portfolio to the investment portfolio service.
-1. The user selects multiple News feeds for the application to monitor.
-1. The name of the portfolio and news feeds are sent to the server.
-1. The server pulls the portfolio of the user from the investment portfolio service.
-1. The server then spawns a process for each feed to monitor them in parallel.
-1. Each process spawns two threads:
-	1. One to start and stop recording the clip once the process identifies an interesting clip for the user based on the portfolio.
-	1. The other to send the clip extracted through an error detect sequence to fix any encoding issues with the clip.
-1. The processes continuously send the clips to be stored in a repository.
-1. The user gets the clips on the client side through a socket connection to the server.
+1. User sends the investment portfolio to the Investment Portfolio service.
+2. User selects multiple news feeds for the application to monitor.
+3. Application sends the portfolio name and selected news feeds to the server.
+4. Server pulls the user's portfolio from the investment portfolio service.
+5. Server then spawns a process for each feed to monitor them in parallel.
+6. Each process spawns two threads:
+   * One that starts and stops recording the clip once the process identifies an appropriate clip for the user based on the portfolio
+   * The other sends the clip extracted through an error detect sequence to fix any encoding issues with the clip
+7. Processes continuously send the clips to be stored in a repository.
+8. User gets the clips on the client side through a socket connection to the server.
 
 # Included Components
 
@@ -39,6 +39,7 @@ This code pattern is for developers looking to integrate with the investment por
 * [Tesseract-OCR](https://github.com/tesseract-ocr/tesseract) Tesseract is an OCR engine.
 * [OpenCV](https://opencv.org/) OpenCV is a library of programming functions mainly aimed at real-time computer vision
 * [Streamlink](https://streamlink.github.io/) Command-line utility that extracts streams from various services and pipes them into a video player of choice
+* [Socket.IO](https://socket.io/) Socket.IO enables real-time, bidirectional and event-based communication.
 * [Docker](https://www.docker.com/) Docker is a computer program that performs operating-system-level virtualization, also known as Containerization
 * [Curl](https://curl.haxx.se/) Curl is a command line tool and library for transferring data with URLs
 
