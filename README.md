@@ -46,13 +46,13 @@ This code pattern is for developers who want to integrate with the Investment Po
 # Running the application
 
 ## Manually deploy to local machine
-1. [Set up your machine](#1-setup-your-machine)
+1. [Set up your machine](#1-set-up-your-machine)
 2. [Clone the repository](#2-clone-the-repository)
-3. [Create the Investment Portfolio service](#3-create-investment-portfolio-service)
-4. [Configure the .env file](#4-configure-env-file)
+3. [Create the Investment Portfolio service](#3-create-the-investment-portfolio-service)
+4. [Configure the .env file](#4-configure-the-env-file)
 5. [Run the application in a Docker container](#5-run-with-docker)
-6. [Upload the holdings](#6-uploading-holdings)
-7. [Watch the news](#7-watch-news)
+6. [Upload the holdings](#6-uploading-the-holdings)
+7. [Watch the news](#7-watch-the-news)
 
 ### 1. Set up your machine
 - [Python](https://www.python.org/downloads/): Download and install Python 3.6 or above.
@@ -61,7 +61,7 @@ This code pattern is for developers who want to integrate with the Investment Po
 ### 2. Clone the repository
 
 ```
-git clone https://github.com/ash7594/Portfolio-NewsAnchor.git
+git clone https://github.com/IBM/Portfolio-NewsAnchor.git
 ```
 
 ## 3. Create the Investment Portfolio service
@@ -81,7 +81,7 @@ Create the `.env` file in the root directory of your clone of the project reposi
 
 > Most file systems regard files with a "." at the front as hidden files.  If you are on a Windows system, you should be able to use either [GitBash](https://git-for-windows.github.io/) or [Xcopy](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/xcopy).
 
-You will need to update the credentials with the IBM Cloud credentials for the services that you created in [Step 2](#2-create-investment-portfolio-service).
+You will need to update the credentials with the IBM Cloud credentials for the services that you created in [Step 3](#3-create-the-investment-portfolio-service).
 
 The `.env` file will look something like the following:
 
