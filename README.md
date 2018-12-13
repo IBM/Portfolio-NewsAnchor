@@ -49,9 +49,9 @@ This code pattern is for developers who want to integrate with the Investment Po
 1. [Set up your machine](#1-set-up-your-machine)
 2. [Clone the repository](#2-clone-the-repository)
 3. [Create the Investment Portfolio service](#3-create-the-investment-portfolio-service)
-4. [Configure the .env file](#4-configure-the-env-file)
+4. [Configure the .env file](#4-configure-the-.env-file)
 5. [Run the application in a Docker container](#5-run-with-docker)
-6. [Upload the holdings](#6-uploading-the-holdings)
+6. [Upload the holdings](#6-upload-the-holdings)
 7. [Watch the news](#7-watch-the-news)
 
 ### 1. Set up your machine
