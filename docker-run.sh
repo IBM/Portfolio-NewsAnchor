@@ -11,7 +11,7 @@ echo '=====>docker build'
 docker build --no-cache -t portfolio-newsanchor .
 
 echo '=====>docker run'
-docker run -d --restart always --name portfolio-newsanchor -p 8080:8080 -e "NODE_ENV=local" portfolio-newsanchor
+docker run -d --restart always --name portfolio-newsanchor -p 8080:8080 portfolio-newsanchor
 
 echo '---------------------------------'
 echo '=====>Portfolio-NewsAnchor running on port 8080'
