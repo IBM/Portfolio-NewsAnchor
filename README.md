@@ -1,3 +1,7 @@
+# WARNING: This repository is no longer maintained :warning:
+
+> This repository will not be updated. The repository will be kept available in read-only mode.
+
 # Watch live news for market changes that could affect your investments
 
 If you've ever set foot on a trading floor, you know that there are almost always several TVs tuned to business news stations. The trading floor is anything but a quiet place, making it all but impossible for traders to hear any of the content coming from those channels other than catastrophic breaking news. Breaking news also tends to be about larger, more visible companies; news about smaller companies may have a greater impact on individual fund managers or equity researchers than these big news stories, but may go undetected as these news segments tend to be shorter and can get buried beneath the larger stories.
